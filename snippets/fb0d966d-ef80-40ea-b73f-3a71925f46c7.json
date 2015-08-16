@@ -1,0 +1,21 @@
+{
+  "uuid": "fb0d966d-ef80-40ea-b73f-3a71925f46c7",
+  "name": "Alchemy_ContentAuthor",
+  "description": "Gets the Author of the Content (URL) ",
+  "extraSearchTerms": [
+    "Content",
+    "Author"
+  ],
+  "tags": [
+    "ContentAuthor"
+  ],
+  "code": "public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)})\r\n        throws IOException, SAXException,\r\n               ParserConfigurationException, XPathExpressionException\r\n{\r\n\t// Create an AlchemyAPI object.\r\n\t\r\n\tAlchemyAPI ${alchemyObj:newName(com.alchemyapi.api.AlchemyAPI)} \u003d AlchemyAPI.GetInstanceFromString(\"5fc91e98eacfa5ebf83440e8c6a61d0f60fa380b\");\r\n\t\r\n\tString ${URLString:newName(java.lang.String)} \u003d \"http://www.huffingtonpost.com/2015/04/05/report-vegan-diet_n_7008156.html\";\r\n\tSystem.out.println(\"URL sent to URLGetAuthor AlchemyAPI --\u003e \" + ${URLString});\r\n\tDocument ${doc:newName(org.w3c.dom.Document)} \u003d ${alchemyObj}.URLGetAuthor(${URLString});\r\n\t\r\n\tString ${convertDocToString:newName(java.lang.String)} \u003d AlchemyUtility.getStringFromDocument(${doc});\r\n\tString ${alchemyAPIResult:newName(java.lang.String)} \u003d AlchemyUtility.returnResultFromXML(${convertDocToString},\"author\");\r\n\tSystem.out.println(${convertDocToString});\r\n\tSystem.out.println(\"Output from URLGetAuthor AlchemyAPI: Author is --\u003e \" + ${alchemyAPIResult});\r\n\r\n\t   \r\n}\r\n${import:import(com.alchemyapi.api.AlchemyAPI, com.ibm.thirdparty.alchemy.AlchemyUtility, java.io.IOException, javax.xml.parsers.ParserConfigurationException, javax.xml.xpath.XPathExpressionException, org.w3c.dom.Document, org.xml.sax.SAXException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
