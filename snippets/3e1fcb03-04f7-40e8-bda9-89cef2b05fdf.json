@@ -1,15 +1,15 @@
 {
-  "uuid": "c21fcfeb-5260-4176-b960-41955b4257ed",
-  "name": "snip2",
+  "uuid": "3e1fcb03-04f7-40e8-bda9-89cef2b05fdf",
+  "name": "newsnip1",
   "description": "",
   "extraSearchTerms": [
-    "snip2"
+    "newsnip1"
   ],
   "tags": [
-    "snip2"
+    "newsnippet1"
   ],
   "code": "\r\nimport com.alchemyapi.api.AlchemyAPI;\r\nimport javax.xml.parsers.ParserConfigurationException;\r\nimport javax.xml.xpath.XPathExpressionException;\r\nimport org.xml.sax.SAXException;\r\nimport org.w3c.dom.Document;\r\nimport java.io.*;\r\n\r\nclass LanguageTest {\r\n    public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)})\r\n        throws IOException, SAXException,\r\n               ParserConfigurationException, XPathExpressionException\r\n    {\r\n    \r\n    \tAlchemyAPI ${alchemyObj:newName(com.alchemyapi.api.AlchemyAPI)} \u003d AlchemyAPI.GetInstanceFromString(\"5fc91e98eacfa5ebf83440e8c6a61d0f60fa380b\");\r\n    \t\r\n        System.out.println(\"Calling URLGetLanguage AlchemyAPI to detect the language for web URL: \" + \"http://news.google.fr \");\r\n        Document ${doc:newName(org.w3c.dom.Document)} \u003d ${alchemyObj}.URLGetLanguage(\"http://news.google.fr/\");\r\n        \r\n        \r\n\t\tString ${convertDocToString:newName(java.lang.String)} \u003d AlchemyUtility.getStringFromDocument(${doc});\r\n\t\tString ${alchemyAPIResult:newName(java.lang.String)} \u003d AlchemyUtility.returnResultFromXML(${convertDocToString},\"language\");\r\n\t\t\r\n\t\tSystem.out.println(\"Output from URLGetAuthor AlchemyAPI: Language is --\u003e \" + ${alchemyAPIResult});\r\n    }\r\n    \r\n    \r\n   \r\n\r\n}\r\n${import:import(com.alchemyapi.api.AlchemyAPI, com.ibm.thirdparty.alchemy.AlchemyUtility, java.io.IOException, javax.xml.parsers.ParserConfigurationException, javax.xml.xpath.XPathExpressionException, org.w3c.dom.Document, org.xml.sax.SAXException)}${cursor}\r\n",
-  "location": "JAVA",
+  "location": "FILE",
   "dependencies": [
     {
       "groupId": "jre",
