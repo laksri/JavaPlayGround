@@ -1,0 +1,22 @@
+{
+  "uuid": "fd93fbb9-69b1-4392-9e67-152f64035e13",
+  "name": "AlchemyUtility",
+  "description": "AlchemyAPI Utility Class - need to have it for all teh examples",
+  "extraSearchTerms": [
+    "AlchemyUtility"
+  ],
+  "tags": [
+    "AlchemyAPI",
+    "Alchemy",
+    "Alchemy Utility"
+  ],
+  "code": "\r\npublic class AlchemyUtility {\r\n\r\n\r\n\t//XMLToStringConverter\r\n\tpublic static String returnResultFromXML(String ${convertDocToString:newName(java.lang.String)}, String ${tag:newName(java.lang.String)} ) throws SAXException, IOException, ParserConfigurationException {\r\n\t\t\tString ${alchemyResult:newName(java.lang.String)} \u003d null;\r\n\t\t\t//XML Conversion \r\n\t\t\tDocumentBuilderFactory ${factory:newName(javax.xml.parsers.DocumentBuilderFactory)} \u003d DocumentBuilderFactory.newInstance();\r\n\t\t\tDocumentBuilder ${builder:newName(javax.xml.parsers.DocumentBuilder)} \u003d ${factory}.newDocumentBuilder();\r\n\t\t\t// Load the input XML document, parse it and return an instance of the\r\n\t\t\t// Document class.\r\n\t\t\tInputSource ${is:newName(org.xml.sax.InputSource)} \u003d new InputSource();\r\n\t\t\t${is}.setCharacterStream(new StringReader(${convertDocToString}));\r\n\t\t\tDocument ${document:newName(org.w3c.dom.Document)} \u003d ${builder}.parse(${is});\r\n\t\t\tNodeList ${nodes:newName(org.w3c.dom.NodeList)} \u003d ${document}.getElementsByTagName(\"results\");\r\n\t\t\tfor (int ${i:newName(int)} \u003d 0; ${i} \u003c ${nodes}.getLength(); ${i}++) {\r\n\t\t\t\tElement ${element:newName(org.w3c.dom.Element)} \u003d (Element) ${nodes}.item(${i});\r\n\t\t\t\tNodeList ${authorElement:newName(org.w3c.dom.NodeList)} \u003d ${element}.getElementsByTagName(${tag});\r\n\t\t\t\tElement ${line:newName(org.w3c.dom.Element)} \u003d (Element) ${authorElement}.item(${i});\r\n\t\t\t\t//System.out.println(\"author is\" + authorElement.toString());\r\n\t\t\t\tNode ${child:newName(org.w3c.dom.Node)} \u003d ${line}.getFirstChild();\r\n\t\t\t\tif (${child} instanceof CharacterData) {\r\n\t\t\t\t\tCharacterData ${cd:newName(org.w3c.dom.CharacterData)} \u003d (CharacterData) ${child};\r\n\t\t\t\t\t${alchemyResult} \u003d ${cd}.getData();\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\treturn ${alchemyResult};\r\n\t\t}\r\n\r\n\r\n\t// utility method\r\n    public static String getStringFromDocument(Document ${doc:newName(org.w3c.dom.Document)}) {\r\n        try {\r\n            DOMSource ${domSource:newName(javax.xml.transform.dom.DOMSource)} \u003d new DOMSource(${doc});\r\n            StringWriter ${writer:newName(java.io.StringWriter)} \u003d new StringWriter();\r\n            StreamResult ${result:newName(javax.xml.transform.stream.StreamResult)} \u003d new StreamResult(${writer});\r\n\r\n            TransformerFactory ${tf:newName(javax.xml.transform.TransformerFactory)} \u003d TransformerFactory.newInstance();\r\n            Transformer ${transformer:newName(javax.xml.transform.Transformer)} \u003d ${tf}.newTransformer();\r\n            ${transformer}.transform(${domSource}, ${result});\r\n\r\n            return ${writer}.toString();\r\n        } catch (TransformerException ${ex:newName(javax.xml.transform.TransformerException)}) {\r\n            ${ex}.printStackTrace();\r\n            return null;\r\n        }\r\n    }\t\r\n    \r\n}\r\n\r\n${import:import(java.io.IOException, java.io.StringReader, java.io.StringWriter, javax.xml.parsers.DocumentBuilder, javax.xml.parsers.DocumentBuilderFactory, javax.xml.parsers.ParserConfigurationException, javax.xml.transform.Transformer, javax.xml.transform.TransformerException, javax.xml.transform.TransformerFactory, javax.xml.transform.dom.DOMSource, javax.xml.transform.stream.StreamResult, org.w3c.dom.CharacterData, org.w3c.dom.Document, org.w3c.dom.Element, org.w3c.dom.Node, org.w3c.dom.NodeList, org.xml.sax.InputSource, org.xml.sax.SAXException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
