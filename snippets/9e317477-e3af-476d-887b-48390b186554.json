@@ -1,0 +1,24 @@
+{
+  "uuid": "9e317477-e3af-476d-887b-48390b186554",
+  "name": "Cloudant_CreateDatabaseAccess",
+  "description": "Create Key to Access the Database",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Access",
+    "Database",
+    "Key"
+  ],
+  "tags": [
+    "Cloudant",
+    "DatabaseAccess"
+  ],
+  "code": " // Generate an API Key for your DB and Give Admin Access\r\n\t\tApiKey ${key:newName(com.cloudant.client.api.model.ApiKey)} \u003d ${client:var(com.cloudant.client.api.CloudantClient)}.generateApiKey();\r\n\t\tSystem.out.println(\"GENERATE API KEY ---\u003e\" + ${key});\r\n\t\t\r\n\t\tDatabase ${db3:newName(com.cloudant.client.api.Database)} \u003d ${client:var(com.cloudant.client.api.CloudantClient)}.database(\"ecodcnc\", false);\r\n\t\t${db3}.setPermissions(${key}.getKey(), EnumSet.\u003cPermissions\u003eof(Permissions._admin));\r\n\t\tSystem.out.println(${key}.getKey() + \" now has Admin access to alice\");\r\n\r\n${import:import(com.cloudant.client.api.Database, com.cloudant.client.api.model.ApiKey, com.cloudant.client.api.model.Permissions, java.util.EnumSet)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
