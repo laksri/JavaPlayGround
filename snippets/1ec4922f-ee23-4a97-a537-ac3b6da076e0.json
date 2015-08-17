@@ -1,0 +1,24 @@
+{
+  "uuid": "1ec4922f-ee23-4a97-a537-ac3b6da076e0",
+  "name": "Alchemy_ImageTag",
+  "description": "Find the Tags for Images",
+  "extraSearchTerms": [
+    "Alchemy",
+    "AlchemyAPI",
+    "Image",
+    "Tag"
+  ],
+  "tags": [
+    "Alchemy",
+    "ImageTag"
+  ],
+  "code": "public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)})\r\n    throws IOException, SAXException,\r\n           ParserConfigurationException, XPathExpressionException\r\n{\r\n    // Create an AlchemyAPI object.\r\n\t\r\n\tAlchemyAPI ${alchemyObj:newName(com.alchemyapi.api.AlchemyAPI)} \u003d AlchemyAPI.GetInstanceFromString(\"5fc91e98eacfa5ebf83440e8c6a61d0f60fa380b\");\r\n    String ${ImageString:newName(java.lang.String)} \u003d \"http://farm4.staticflickr.com/3726/11043305726_fdcb7785ec_m.jpg\";\r\n\t\tSystem.out.println(\"URL sent to URLGetFeedLinks AlchemyAPI --\u003e \" + ${ImageString});\r\n\t\tDocument ${doc:newName(org.w3c.dom.Document)} \u003d ${alchemyObj}.URLGetRankedImageKeywords(${ImageString});\r\n\t\tString ${convertDocToString:newName(java.lang.String)} \u003d AlchemyUtility.getStringFromDocument(${doc});\r\n\t\tString ${alchemyAPIResult:newName(java.lang.String)} \u003d AlchemyUtility.returnResultFromXML(${convertDocToString},\"text\");\r\n\tSystem.out.println(\"Output from URLGetRankedImageKeywords AlchemyAPI, Image is of--\u003e \" + ${alchemyAPIResult});\r\n    \r\n}\r\n${import:import(com.alchemyapi.api.AlchemyAPI, com.ibm.thirdparty.alchemy.AlchemyUtility, java.io.IOException, javax.xml.parsers.ParserConfigurationException, javax.xml.xpath.XPathExpressionException, org.w3c.dom.Document, org.xml.sax.SAXException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
