@@ -1,0 +1,25 @@
+{
+  "uuid": "7fd955c1-bc10-4501-bf0a-eb65a529dcca",
+  "name": "Cloudant_InsertAttachment",
+  "description": "Insert Attachment to a Document",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Insert",
+    "Add",
+    "Attach",
+    "Document"
+  ],
+  "tags": [
+    "Cloudant",
+    "InsertAttachment"
+  ],
+  "code": "//Insert or save an Attachment\r\n\r\nDatabase ${db5:newName(com.cloudant.client.api.Database)} \u003d ${client:var(com.cloudant.client.api.CloudantClient)}.database(\"ecodcnc\", true);\r\nbyte[] ${bytesToDB:newName(\u0027byte[]\u0027)} \u003d \"EcoD CNC Smart Stubs\".getBytes();\r\nByteArrayInputStream ${bytesIn:newName(java.io.ByteArrayInputStream)} \u003d new ByteArrayInputStream(${bytesToDB});\r\nResponse ${response2:newName(com.cloudant.client.api.model.Response)} \u003d ${db5}.saveAttachment(${bytesIn}, \"ecodcnc.txt\", \"text/plain\");\r\nSystem.out.println(\"SAVED ATTACHMENT to a Document Successfully ---\u003e\" + ${response2}.toString());\r\n\r\n${import:import(com.cloudant.client.api.Database, com.cloudant.client.api.model.Response, java.io.ByteArrayInputStream)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
