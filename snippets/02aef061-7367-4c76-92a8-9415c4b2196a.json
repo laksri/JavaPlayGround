@@ -1,0 +1,30 @@
+{
+  "uuid": "02aef061-7367-4c76-92a8-9415c4b2196a",
+  "name": "Cloudant_InsertDocument",
+  "description": "Insert Document in a Database",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Add",
+    "Append",
+    "Insert",
+    "Document"
+  ],
+  "tags": [
+    "Cloudant",
+    "InsertDocument"
+  ],
+  "code": "// Insert a Document to the Database\r\nJsonObject ${json:newName(com.google.gson.JsonObject)} \u003d new JsonObject();\r\n${json}.addProperty(\"_id\", \"smart-developer-id-1\");\r\n${json}.add(\"json-array\", new JsonArray());\r\nResponse ${response:newName(com.cloudant.client.api.model.Response)} \u003d${db3:var(com.cloudant.client.api.Database)}.save(${json});\r\nSystem.out.println(\"INSERTED DOCUMENT Successfully ---\u003e\" + ${response}.toString());\r\n${import:import(com.cloudant.client.api.model.Response, com.google.gson.JsonArray, com.google.gson.JsonObject)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "com.google.gson",
+      "artifactId": "com.google.gson",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
