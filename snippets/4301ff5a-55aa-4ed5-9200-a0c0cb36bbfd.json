@@ -1,0 +1,24 @@
+{
+  "uuid": "4301ff5a-55aa-4ed5-9200-a0c0cb36bbfd",
+  "name": "Cloudant_UpdateAttachment",
+  "description": "Update the Attachment to the Document",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Attachment",
+    "Update",
+    "Insert"
+  ],
+  "tags": [
+    "Cloudant",
+    "UpdateAttachment"
+  ],
+  "code": "//Update the Saved Attachment\r\n// Database db5 \u003d client.database(\"ecodcnc\", true);\r\nbyte[] ${bytesToDB1:newName(\u0027byte[]\u0027)} \u003d \"EcoD CNC Smart Stubs\".getBytes();\r\nByteArrayInputStream ${bytesIn1:newName(java.io.ByteArrayInputStream)} \u003d new ByteArrayInputStream(${bytesToDB1});\r\nResponse ${response3:newName(com.cloudant.client.api.model.Response)}\u003d ${db5:var(com.cloudant.client.api.Database)}.saveAttachment(${bytesIn1}, \"ecodcnc.txt\", \"text/plain\",\"ecodcnc1234567890\",null);\r\nSystem.out.println(\"UPDATED ATTACHMENT to a Document Successfully ---\u003e\" + ${response3}.toString());\r\n\r\n${import:import(com.cloudant.client.api.model.Response, java.io.ByteArrayInputStream)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
