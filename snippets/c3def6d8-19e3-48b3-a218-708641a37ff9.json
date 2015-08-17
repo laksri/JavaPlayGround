@@ -1,0 +1,23 @@
+{
+  "uuid": "c3def6d8-19e3-48b3-a218-708641a37ff9",
+  "name": "Alchemy_RSSFeed",
+  "description": "Get RSS Feed from Link",
+  "extraSearchTerms": [
+    "RSS",
+    "Feed",
+    "Alchemy",
+    "AlchemyAPI"
+  ],
+  "tags": [
+    "Alchemy_RSSFeed"
+  ],
+  "code": "public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)})\r\n    throws IOException, SAXException,\r\n           ParserConfigurationException, XPathExpressionException\r\n{\r\n    // Create an AlchemyAPI object.\r\n    \r\n\tAlchemyAPI ${alchemyObj:newName(com.alchemyapi.api.AlchemyAPI)} \u003d AlchemyAPI.GetInstanceFromString(\"5fc91e98eacfa5ebf83440e8c6a61d0f60fa380b\");\r\n    String ${URLString:newName(java.lang.String)} \u003d \"http://www.politico.com/\";\r\n\t\tSystem.out.println(\"URL sent to URLGetFeedLinks AlchemyAPI --\u003e \" + ${URLString});\r\n\t\tDocument ${doc:newName(org.w3c.dom.Document)} \u003d ${alchemyObj}.URLGetFeedLinks(${URLString});\r\n\t\t\r\n\t\tString ${convertDocToString:newName(java.lang.String)} \u003d AlchemyUtility.getStringFromDocument(${doc});\r\n\t\tString ${alchemyAPIResult:newName(java.lang.String)} \u003d AlchemyUtility.returnResultFromXML(${convertDocToString},\"feed\");\r\n\t\tSystem.out.println(\"Output from URLGetFeedLinks AlchemyAPI, Feed--\u003e \" + ${alchemyAPIResult});\r\n\t\r\n}\r\n${import:import(com.alchemyapi.api.AlchemyAPI, com.ibm.thirdparty.alchemy.AlchemyUtility, java.io.IOException, javax.xml.parsers.ParserConfigurationException, javax.xml.xpath.XPathExpressionException, org.w3c.dom.Document, org.xml.sax.SAXException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
