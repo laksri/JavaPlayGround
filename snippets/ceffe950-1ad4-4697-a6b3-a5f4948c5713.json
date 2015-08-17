@@ -1,0 +1,24 @@
+{
+  "uuid": "ceffe950-1ad4-4697-a6b3-a5f4948c5713",
+  "name": "Cloudant_ListDatabase",
+  "description": "List the Databases int eh conenction",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Database",
+    "List"
+  ],
+  "tags": [
+    "Cloudant",
+    "Database",
+    "List"
+  ],
+  "code": "${databases:var(java.util.List)} \u003d ${client:var(com.cloudant.client.api.CloudantClient)}.getAllDbs();\r\nSystem.out.println(\"LIST AFTER CONNECT - Listing all databases after successful Connection: \");\r\nfor ( String ${db:newName(java.lang.String)} : ${databases:var(java.util.List)} ) {\r\n    System.out.println(\"\" + ${db});\r\n}\r\n${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
