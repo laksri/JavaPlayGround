@@ -1,0 +1,24 @@
+{
+  "uuid": "a7b0f540-832c-4835-8128-a3cf35ed986d",
+  "name": "Cloudant_CreateDatabase",
+  "description": "Create a Database in Cloudant Repository",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Create",
+    "Database"
+  ],
+  "tags": [
+    "Cloudant",
+    "Create",
+    "Database"
+  ],
+  "code": "// Create a new database.\r\n${client:var(com.cloudant.client.api.CloudantClient)}.createDB(\"ecodcnc\");\r\nSystem.out.println(\"CREATE DB - Successfully created a Database Using Cloudant-Client Java API\");\r\n\r\n${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
