@@ -1,0 +1,26 @@
+{
+  "uuid": "9b3c8f9f-afaf-4b6e-b5ff-368f6a9b67f3",
+  "name": "Cloudant_SetupConnection",
+  "description": "Setup Java Client connection",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Connection",
+    "Client",
+    "Setup"
+  ],
+  "tags": [
+    "Cloudant",
+    "Connection",
+    "Setup",
+    "Client"
+  ],
+  "code": "CloudantClient ${client:newName(com.cloudant.client.api.CloudantClient)} \u003d new CloudantClient(${accountname:var(java.lang.String)},${username:var(java.lang.String)},${password:var(java.lang.String)});\r\n\r\nSystem.out.println(\"CONNECT - Successfully Connected to Cloudant\");\r\nSystem.out.println(\"Server Version: \" + ${client}.serverVersion());\r\n${import:import(com.cloudant.client.api.CloudantClient)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
