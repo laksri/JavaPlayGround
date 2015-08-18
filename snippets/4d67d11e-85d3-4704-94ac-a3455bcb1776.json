@@ -1,0 +1,15 @@
+{
+  "uuid": "4d67d11e-85d3-4704-94ac-a3455bcb1776",
+  "name": "Amazon_DynamoDB_Delete",
+  "description": "Delete (Updated) Item",
+  "extraSearchTerms": [
+    "Amazon",
+    "DynamoDB",
+    "Delete",
+    "Remove"
+  ],
+  "tags": [],
+  "code": "// Delete the item.\r\n${mapper:var(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper)}.delete(${updatedItem:var(com.ibm.third.helper.ProductCatalog)});\r\n${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
