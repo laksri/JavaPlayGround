@@ -1,0 +1,20 @@
+{
+  "uuid": "cc91f57f-0751-48b8-aae8-a6e1a71f7eda",
+  "name": "Amazon_DynamoDBConnection",
+  "description": "Setup Connection to Amazon DynamoDB",
+  "extraSearchTerms": [
+    "Amazon",
+    "DynamoDB",
+    "Connection"
+  ],
+  "tags": [],
+  "code": "  AmazonDynamoDBClient ${client:newName(com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient)} \u003d new AmazonDynamoDBClient(new BasicAWSCredentials(apiKey,apiSecret));\r\n\r\n${import:import(com.amazonaws.auth.BasicAWSCredentials, com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient)}${importStatic:importStatic(com.ibm.thirdparty.database.DynamoDBCrud.apiKey, com.ibm.thirdparty.database.DynamoDBCrud.apiSecret)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
