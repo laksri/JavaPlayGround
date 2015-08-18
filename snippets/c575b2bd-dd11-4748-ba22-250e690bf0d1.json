@@ -1,0 +1,21 @@
+{
+  "uuid": "c575b2bd-dd11-4748-ba22-250e690bf0d1",
+  "name": "Amazon_DynamoDB_Query_And_Update",
+  "description": "Amazon DynamoDB Query and Update",
+  "extraSearchTerms": [
+    "Amazon",
+    "DynamoDB",
+    "Query",
+    "Update"
+  ],
+  "tags": [],
+  "code": "// Retrieve the item - see Save option for ProductCatalog instance details\r\nProductCatalog ${itemRetrieved:newName(com.ibm.third.helper.ProductCatalog)} \u003d ${mapper:var(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper)}.load(ProductCatalog.class, 601);\r\nSystem.out.println(\"Item retrieved:\");\r\nSystem.out.println(${itemRetrieved});\r\n\r\n// Update the item \r\n${itemRetrieved}.setISBN(\"622-2222222222\");\r\n${itemRetrieved}.setBookAuthors(new HashSet\u003cString\u003e(Arrays.asList(\"Author1\", \"Author3\")));\r\n${mapper:var(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper)}.save(${itemRetrieved});\r\nSystem.out.println(\"Item updated:\");\r\nSystem.out.println(${itemRetrieved});\r\n${import:import(com.ibm.third.helper.ProductCatalog, java.util.Arrays, java.util.HashSet)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
