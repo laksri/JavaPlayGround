@@ -1,0 +1,19 @@
+{
+  "uuid": "6b082dd0-40ac-49d4-8a37-d31a4d48d119",
+  "name": "MemCached_CRUD",
+  "description": "CRUD Operations using MemCached",
+  "extraSearchTerms": [
+    "MemCached",
+    "CRUD"
+  ],
+  "tags": [],
+  "code": " private MemcachedClient ${cache:newName(net.spy.memcached.MemcachedClient)};\r\n\r\npublic MemcacheCrud()throws IOException{\r\n    ${cache}\u003dnew MemcachedClient(new InetSocketAddress(\"localhost\", 11211));\r\n\r\n}\r\n\r\npublic void put(final Object ${key:newName(java.lang.Object)}, final Object ${value:newName(java.lang.Object)}) {\r\n    // Store a value  for 24 hour\r\n${cache}.set(${key}.toString(), 24 * 3600, ${value});\r\n  }\r\n\r\npublic Object retrieve(final String ${key2:newName(java.lang.String)}){\r\n    return ${cache}.get(${key2});\r\n}\r\n\r\n public void update(final Object ${key3:newName(java.lang.Object)}, final Object ${value2:newName(java.lang.Object)}) {\r\n    // replace a value and store for 1 hour\r\n${cache}.set(${key3}.toString(), 3600, ${value2});\r\n  }\r\n\r\n\r\n  public void delete(final Object ${key4:newName(java.lang.Object)}) {\r\n${cache}.delete(${key4}.toString());\r\n  }\r\n\r\n  public void clear(){\r\n  ${cache}.flush();\r\n  }\r\n  \r\npublic static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)})throws Exception {\r\n    \r\n    MemcacheCrud ${mc:newName(com.ibm.thirdparty.database.MemcacheCrud)}\u003dnew  MemcacheCrud();\r\n    \r\n    ${mc}.put(\"name\", \"javaguy\");\r\n    \r\n    System.out.println(${mc}.retrieve(\"name\"));\r\n    \r\n    ${mc}.update(\"name\",\"expertjjava\");\r\n     System.out.println(${mc}.retrieve(\"name\"));\r\n     \r\n   ${mc}.delete(\"name\");\r\n   \r\n   ${mc}.clear();\r\n    \r\n}\r\n${import:import(com.ibm.thirdparty.database.MemcacheCrud, java.io.IOException, java.net.InetSocketAddress, net.spy.memcached.MemcachedClient)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
