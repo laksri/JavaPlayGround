@@ -1,0 +1,24 @@
+{
+  "uuid": "406bc114-9903-49a7-840a-a14154a97f04",
+  "name": "Cloudant_FindDocument",
+  "description": "Find Document using Doc-id and Revision",
+  "extraSearchTerms": [
+    "Cloudant",
+    "Find",
+    "Document"
+  ],
+  "tags": [
+    "Cloudant",
+    "Find",
+    "Document"
+  ],
+  "code": "/*\r\n * Find the Document\r\n * Make sure you close the stream when done, else you could lock up the client easily\r\n * \r\n * Find any document\r\n * Database db \u003d dbClient.database(\"ecodcnc\", true);\r\n * boolean found \u003d db.contains(\"doc-id\");\r\n * \r\n */\r\n\r\n\r\nInputStream ${inputStream:newName(java.io.InputStream)} \u003d ${db5:var(com.cloudant.client.api.Database)}.find(${response3:var(com.cloudant.client.api.model.Response)}.getId(),${response3:var(com.cloudant.client.api.model.Response)}.getRev());\r\nSystem.out.println(\"FIND THE DOCUMENT - Successfully Found the Document --\u003e\" + ${inputStream}.toString() );\r\n// do stuff and finally dont forget to close the stream\r\n${inputStream}.close();\r\n${import:import(java.io.InputStream)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
