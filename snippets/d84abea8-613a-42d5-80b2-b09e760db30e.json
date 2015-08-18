@@ -1,0 +1,21 @@
+{
+  "uuid": "d84abea8-613a-42d5-80b2-b09e760db30e",
+  "name": "Amazon_DynamoDB_Retreive_Updated_Item",
+  "description": "Retreive Updated Item",
+  "extraSearchTerms": [
+    "Amazon",
+    "DynamoDB",
+    "Retreive",
+    "Update"
+  ],
+  "tags": [],
+  "code": " // Retrieve the updated item \r\nDynamoDBMapperConfig ${config:newName(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig)} \u003d new DynamoDBMapperConfig(DynamoDBMapperConfig.ConsistentReads.CONSISTENT);\r\nProductCatalog ${updatedItem:newName(com.ibm.third.helper.ProductCatalog)} \u003d ${mapper:var(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper)}.load(ProductCatalog.class, 601, ${config});\r\nSystem.out.println(\"Retrieved the previously updated item:\");\r\nSystem.out.println(${updatedItem});\r\n${import:import(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig, com.ibm.third.helper.ProductCatalog)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
