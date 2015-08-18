@@ -1,0 +1,20 @@
+{
+  "uuid": "289f7e8d-b21b-42a8-b7fb-b649ad2410ed",
+  "name": "Amazon_DynamoDBSave",
+  "description": "Save to Amazon DynamoDB",
+  "extraSearchTerms": [
+    "Amazon",
+    "DynamoDB",
+    "Save"
+  ],
+  "tags": [],
+  "code": " ProductCatalog ${item:newName(com.ibm.third.helper.ProductCatalog)} \u003d new ProductCatalog();\r\n${item}.setId(601);\r\n${item}.setTitle(\"Book 601\");\r\n${item}.setISBN(\"611-1111111111\");\r\n${item}.setBookAuthors(new HashSet\u003cString\u003e(Arrays.asList(\"Author1\", \"Author2\")));\r\n\r\n// Save the item (book).\r\nDynamoDBMapper ${mapper:newName(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper)} \u003d new DynamoDBMapper(${client:var(com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient)});\r\n${mapper}.save(${item});\r\n${import:import(com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper, com.ibm.third.helper.ProductCatalog, java.util.Arrays, java.util.HashSet)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
