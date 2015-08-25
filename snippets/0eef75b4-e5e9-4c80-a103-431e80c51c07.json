@@ -1,0 +1,21 @@
+{
+  "uuid": "0eef75b4-e5e9-4c80-a103-431e80c51c07",
+  "name": "SendGrid_Email",
+  "description": "Send email from SendGrid",
+  "extraSearchTerms": [
+    "SendGrid",
+    "Email"
+  ],
+  "tags": [
+    "SendGrid"
+  ],
+  "code": " SendGrid ${sendgrid:newName(com.sendgrid.SendGrid)} \u003d new SendGrid(\"SnippetJava\", \"snippetjava@123\");\r\n\r\nSendGrid.Email ${email:newName(com.sendgrid.SendGrid.Email)} \u003d new SendGrid.Email();\r\n${email}.addTo(\"example@example.com\");\r\n${email}.setFrom(\"other@example.com\");\r\n${email}.setSubject(\"Hello World\");\r\n${email}.setText(\"My first email with SendGrid Java!\");\r\n\r\ntry {\r\n  SendGrid.Response ${response:newName(com.sendgrid.SendGrid.Response)} \u003d ${sendgrid}.send(${email});\r\n  System.out.println(${response}.getMessage());\r\n}\r\ncatch (SendGridException ${e:newName(com.sendgrid.SendGridException)}) {\r\n  System.err.println(${e});\r\n}\r\n${import:import(com.sendgrid.SendGrid, com.sendgrid.SendGridException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
