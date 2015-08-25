@@ -1,0 +1,22 @@
+{
+  "uuid": "01661988-4bbe-4124-9234-b212a23a9e91",
+  "name": "SQLDB_CRUD",
+  "description": "SQLDB CRUD",
+  "extraSearchTerms": [
+    "SQLDB",
+    "CRUD"
+  ],
+  "tags": [
+    "SQLDB",
+    "CRUD"
+  ],
+  "code": "// Execute some SQL statements on the table: Insert, Select and Delete\r\ntry {\r\n\t${sqlStatement:var(java.lang.String)} \u003d \"INSERT INTO \" + ${tableName:var(java.lang.String)}\r\n\t\t\t+ \" VALUES (\\\u0027John Smith\\\u0027, 52)\";\r\n\r\n\t${stmt:var(java.sql.Statement)}.executeUpdate(${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"Successfully Executed the Statement: \" + ${sqlStatement:var(java.lang.String)});\r\n\t${sqlStatement:var(java.lang.String)} \u003d \"SELECT * FROM \" + ${tableName:var(java.lang.String)}\r\n\t\t\t+ \" WHERE NAME LIKE \\\u0027John%\\\u0027\";\r\n\tResultSet ${rs:newName(java.sql.ResultSet)} \u003d ${stmt:var(java.sql.Statement)}.executeQuery(${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"Successfully Executed the Statement: \" + ${sqlStatement:var(java.lang.String)});\r\n\r\n\t// Process the result set\r\n\tString ${empNo:newName(java.lang.String)};\r\n\twhile (${rs}.next()) {\r\n\t\t${empNo} \u003d ${rs}.getString(1);\r\n\t\tSystem.out.println(\"  Found Employee: \" + ${empNo});\r\n\t}\r\n\t// Close the ResultSet\r\n\t${rs}.close();\r\n\r\n\t// Delete the record\r\n\t${sqlStatement:var(java.lang.String)} \u003d \"DELETE FROM \" + ${tableName:var(java.lang.String)}\r\n\t\t\t+ \" WHERE NAME \u003d \\\u0027John Smith\\\u0027\";\r\n\t\r\n\t// Update the record\r\n\t// It will be similar to the Delete\r\n\t// TODO : Placeholder\r\n\t\r\n\t${stmt:var(java.sql.Statement)}.executeUpdate(${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"Successfully Executed the Statement: \" + ${sqlStatement:var(java.lang.String)});\r\n} catch (SQLException ${e:newName(java.sql.SQLException)}) {\r\n\tSystem.out.println(\"Error executing:\" + ${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"SQL Exception: \" + ${e});\r\n}\r\n${import:import(java.sql.ResultSet, java.sql.SQLException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
