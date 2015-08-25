@@ -1,0 +1,28 @@
+{
+  "uuid": "f75919c1-1d5e-425c-b580-9816402250f9",
+  "name": "Twilio_SendTextMessage",
+  "description": "Send a Text Message using Twilio",
+  "extraSearchTerms": [
+    "Twilio",
+    "Send",
+    "Text",
+    "Message"
+  ],
+  "tags": [
+    "Twilio"
+  ],
+  "code": "TwilioRestClient ${client:newName(com.twilio.sdk.TwilioRestClient)} \u003d new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);\r\n \r\n// Build a filter for the MessageList\r\nList\u003cNameValuePair\u003e ${params:newName(java.util.List)} \u003d new ArrayList\u003cNameValuePair\u003e();\r\n${params}.add(new BasicNameValuePair(\"Body\", \"Hi Good Morning\"));\r\n${params}.add(new BasicNameValuePair(\"To\", \"+19196412386\"));\r\n${params}.add(new BasicNameValuePair(\"From\", \"+19199481368\"));\r\n \r\nMessageFactory ${messageFactory:newName(com.twilio.sdk.resource.factory.MessageFactory)} \u003d ${client}.getAccount().getMessageFactory();\r\nMessage ${message:newName(com.twilio.sdk.resource.instance.Message)} \u003d ${messageFactory}.create(${params});\r\nSystem.out.println(${message}.getSid());\r\n${import:import(com.twilio.sdk.TwilioRestClient, com.twilio.sdk.resource.factory.MessageFactory, com.twilio.sdk.resource.instance.Message, java.util.ArrayList, java.util.List, org.apache.http.NameValuePair, org.apache.http.message.BasicNameValuePair)}${importStatic:importStatic(com.ibm.thirdparty.messaging.twilliotest.ACCOUNT_SID, com.ibm.thirdparty.messaging.twilliotest.AUTH_TOKEN)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "org.apache.httpcomponents",
+      "artifactId": "httpcore",
+      "version": "0.0.0"
+    }
+  ]
+}
