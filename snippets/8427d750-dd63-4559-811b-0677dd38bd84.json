@@ -1,0 +1,26 @@
+{
+  "uuid": "8427d750-dd63-4559-811b-0677dd38bd84",
+  "name": "DropBox_Sample",
+  "description": "DropBox API",
+  "extraSearchTerms": [
+    "DropBox",
+    "API"
+  ],
+  "tags": [
+    "DropBox"
+  ],
+  "code": "try {\r\n\tDbxAppInfo ${appInfo:newName(com.dropbox.core.DbxAppInfo)} \u003d new DbxAppInfo(${APP_KEY:field(java.lang.String)}, ${APP_SECRET:field(java.lang.String)});\r\n\r\n\tDbxRequestConfig ${config:newName(com.dropbox.core.DbxRequestConfig)} \u003d new DbxRequestConfig(\"JavaTutorial/1.0\", Locale.getDefault().toString());\r\n\r\n\tDbxWebAuthNoRedirect ${webAuth:newName(com.dropbox.core.DbxWebAuthNoRedirect)} \u003d new DbxWebAuthNoRedirect(${config}, ${appInfo});\r\n\r\n\tString ${authorizeUrl:newName(java.lang.String)} \u003d ${webAuth}.start();\r\n\r\n\tSystem.out.println(\"1. Go to: \" + ${authorizeUrl});\r\n\tSystem.out.println(\"2. Click \\\"Allow\\\" (you might have to log in first)\");\r\n\tSystem.out.println(\"3. Copy the authorization code.\");\r\n\tString ${code:newName(java.lang.String)} \u003d new BufferedReader(new InputStreamReader(System.in)).readLine().trim();\r\n\r\n\tDbxAuthFinish ${authFinish:newName(com.dropbox.core.DbxAuthFinish)} \u003d ${webAuth}.finish(${code});\r\n\tString ${accessToken:newName(java.lang.String)} \u003d ${authFinish}.accessToken;\r\n\r\n\tDbxClient ${client:newName(com.dropbox.core.DbxClient)} \u003d new DbxClient(${config}, ${accessToken});\r\n\tSystem.out.println(\"Linked account: \" + ${client}.getAccountInfo().${displayName:field(java.lang.String)});\r\n\r\n\t// Listing folder\r\n\r\n\tDbxEntry.WithChildren ${listing:newName(com.dropbox.core.DbxEntry.WithChildren)} \u003d ${client}.getMetadataWithChildren(\"/\");\r\n\tSystem.out.println(\"Files in the root path:\");\r\n\tfor (DbxEntry ${child:newName(com.dropbox.core.DbxEntry)} : ${listing}.children) {\r\n\t\tSystem.out.println(\"\t\" + ${child}.name + \": \" + ${child}.toString());\r\n\t}\r\n\r\n} catch (Exception ${ex:newName(java.lang.Exception)}) {\r\n\t${ex}.printStackTrace();\r\n}\r\n${import:import(com.dropbox.core.DbxAppInfo, com.dropbox.core.DbxAuthFinish, com.dropbox.core.DbxClient, com.dropbox.core.DbxEntry, com.dropbox.core.DbxRequestConfig, com.dropbox.core.DbxWebAuthNoRedirect, java.io.BufferedReader, java.io.InputStreamReader, java.util.Locale)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "com.dropbox.core",
+      "artifactId": "dropbox-core-sdk",
+      "version": "0.0.0"
+    }
+  ]
+}
