@@ -1,0 +1,21 @@
+{
+  "uuid": "d87e3fff-8872-4d16-857a-a5ed3e21680a",
+  "name": "Google_Translate",
+  "description": "Use Google Translate",
+  "extraSearchTerms": [
+    "Google",
+    "Translate"
+  ],
+  "tags": [
+    "Google"
+  ],
+  "code": "\r\npublic class GoogleTranslate {\r\n\r\n\tprivate static String ${key:newName(java.lang.String)} \u003d \"AIzaSyAM2Z-DIV4t72YtOmjeezNHfx_xrs24Ejw\";\r\n\r\n\t/**\r\n\t * @param ${args}\r\n\t *            the command line arguments\r\n\t */\r\n\tpublic static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) throws IOException {\r\n\r\n\t\tTranslate.Builder ${builder:newName(com.google.api.services.translate.Translate.Builder)} \u003d new Translate.Builder(new NetHttpTransport(), new GsonFactory(), null);\r\n\t\t${builder}.setApplicationName(\"Java \");\r\n\t\tTranslate ${trans:newName(com.google.api.services.translate.Translate)} \u003d ${builder}.build();\r\n\r\n\t\tTranslations ${ts:newName(com.google.api.services.translate.Translate.Translations)} \u003d ${trans}.translations();\r\n\t\tList\u003cString\u003e ${stl:newName(java.util.List)} \u003d new ArrayList\u003cString\u003e();\r\n\t\t${stl}.add(\"Kyaptin Sagir Kooli sojan da ya bayyana faifan bidiyon yadda aka murda zaben Jihar Ekiti a makon da ya wuce, ya ce jami’an asirin na DSS suna satar nadar bayanan layukan wayoyin Tinubu\");\r\n\t\tTranslations.List ${st:newName(com.google.api.services.translate.Translate.Translations.List)} \u003d ${ts}.list(${stl}, \"en\");\r\n\t\t${st}.setKey(${key});\r\n\r\n\t\tTranslationsListResponse ${response:newName(com.google.api.services.translate.model.TranslationsListResponse)} \u003d ${st}.execute();\r\n\r\n\t\t// ClassInfo ci\u003d response.getClassInfo();\r\n\t\t//\r\n\r\n\t\tList\u003cTranslationsResource\u003e ${res:newName(java.util.List)} \u003d ${response}.getTranslations();\r\n\t\tfor (TranslationsResource ${re:newName(com.google.api.services.translate.model.TranslationsResource)} : ${res}) {\r\n\t\t\tSystem.out.println(${re}.getTranslatedText());\r\n\t\t}\r\n\t\tString ${str:newName(java.lang.String)} \u003d ${response}.toPrettyString();\r\n\r\n\t\tSystem.out.println(${str});\r\n\r\n\t}\r\n\r\n}\r\n\r\n${import:import(com.google.api.client.http.javanet.NetHttpTransport, com.google.api.client.json.gson.GsonFactory, com.google.api.services.translate.Translate, com.google.api.services.translate.Translate.Translations, com.google.api.services.translate.model.TranslationsListResponse, com.google.api.services.translate.model.TranslationsResource, java.io.IOException, java.util.ArrayList, java.util.List)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
