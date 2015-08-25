@@ -1,0 +1,23 @@
+{
+  "uuid": "08543d46-a57f-42d4-a45e-30b9b4765d03",
+  "name": "SQLDB_CreateTable",
+  "description": "Create a Table",
+  "extraSearchTerms": [
+    "SQLDB",
+    "Create",
+    "Table"
+  ],
+  "tags": [
+    "SQLDB",
+    "CreateTable"
+  ],
+  "code": "// Create the CREATE TABLE SQL statement and execute it\r\n${sqlStatement:var(java.lang.String)} \u003d \"CREATE TABLE \" + ${tableName:var(java.lang.String)}\r\n\t\t+ \" (NAME VARCHAR(20), AGE INTEGER)\";\r\n// create a table\r\ntry {\r\n\t${stmt:var(java.sql.Statement)} \u003d ${con:var(java.sql.Connection)}.createStatement();\r\n\t${stmt:var(java.sql.Statement)}.executeUpdate(${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"Successfully Executed the Statement:\" + ${sqlStatement:var(java.lang.String)});\r\n} catch (SQLException ${e:newName(java.sql.SQLException)}) {\r\n\tSystem.out.println(\"Error creating table: \" + ${e});\r\n}\r\n${import:import(java.sql.SQLException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
