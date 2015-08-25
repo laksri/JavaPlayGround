@@ -1,0 +1,23 @@
+{
+  "uuid": "94708d2a-8343-4d25-80ca-65fcda6ece1d",
+  "name": "SQLDB_RemoveSchema",
+  "description": "Remove Schema",
+  "extraSearchTerms": [
+    "SQLDB",
+    "Remove",
+    "Schema"
+  ],
+  "tags": [
+    "SQLDB",
+    "RemoveSchema"
+  ],
+  "code": "// Remove the schema from the database\r\ntry {\r\n\t${sqlStatement:var(java.lang.String)} \u003d \"DROP SCHEMA \" + ${schemaName:var(java.lang.String)} + \" RESTRICT\";\r\n\r\n\t${stmt:var(java.sql.Statement)}.executeUpdate(${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"Successfully Executed the Statement: \" + ${sqlStatement:var(java.lang.String)});\r\n} catch (SQLException ${e:newName(java.sql.SQLException)}) {\r\n\tSystem.out.println(\"Error Dropping schema: \" + ${e});\r\n}\r\n${import:import(java.sql.SQLException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
