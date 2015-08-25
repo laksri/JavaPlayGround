@@ -1,0 +1,23 @@
+{
+  "uuid": "949cfaf4-d05b-4b4c-98b0-0d95c8f8589d",
+  "name": "SQLDB_RemoveTable",
+  "description": "Remove Table",
+  "extraSearchTerms": [
+    "SQLDB",
+    "Remove",
+    "Table"
+  ],
+  "tags": [
+    "SQLDB",
+    "RemoveTable"
+  ],
+  "code": "// Remove the table from the database\r\ntry {\r\n\t${sqlStatement:var(java.lang.String)} \u003d \"DROP TABLE \" + ${tableName:var(java.lang.String)};\r\n\r\n\t${stmt:var(java.sql.Statement)}.executeUpdate(${sqlStatement:var(java.lang.String)});\r\n\tSystem.out.println(\"Successfully Executed the Statement: \" + ${sqlStatement:var(java.lang.String)});\r\n\r\n} catch (SQLException ${e:newName(java.sql.SQLException)}) {\r\n\tSystem.out.println(\"Error dropping table: \" + ${e});\r\n}\r\n\r\n${import:import(java.sql.SQLException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
