@@ -1,0 +1,19 @@
+{
+  "uuid": "e2a394b6-29ba-4b1b-b92c-35d0ad2a97dd",
+  "name": "Google_Calendar_View",
+  "description": "Auxillary Class used in Google Calendar Display",
+  "extraSearchTerms": [
+    "Google",
+    "Calendar"
+  ],
+  "tags": [],
+  "code": "\r\npublic class GoogleCalendarView {\r\n static void header(String ${name:newName(java.lang.String)}) {\r\n    System.out.println();\r\n    System.out.println(\"\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d \" + ${name} + \" \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\");\r\n    System.out.println();\r\n  }\r\n\r\n  static void display(CalendarList ${feed:newName(com.google.api.services.calendar.model.CalendarList)}) {\r\n    if (${feed}.getItems() !\u003d null) {\r\n      for (CalendarListEntry ${entry:newName(com.google.api.services.calendar.model.CalendarListEntry)} : ${feed}.getItems()) {\r\n        System.out.println();\r\n        System.out.println(\"-----------------------------------------------\");\r\n        display(${entry});\r\n      }\r\n    }\r\n  }\r\n\r\n  static void display(Events ${feed2:newName(com.google.api.services.calendar.model.Events)}) {\r\n    if (${feed2}.getItems() !\u003d null) {\r\n      for (Event ${entry2:newName(com.google.api.services.calendar.model.Event)} : ${feed2}.getItems()) {\r\n        System.out.println();\r\n        System.out.println(\"-----------------------------------------------\");\r\n        display(${entry2});\r\n      }\r\n    }\r\n  }\r\n\r\n  static void display(CalendarListEntry ${entry3:newName(com.google.api.services.calendar.model.CalendarListEntry)}) {\r\n    System.out.println(\"ID: \" + ${entry3}.getId());\r\n    System.out.println(\"Summary: \" + ${entry3}.getSummary());\r\n    if (${entry3}.getDescription() !\u003d null) {\r\n      System.out.println(\"Description: \" + ${entry3}.getDescription());\r\n    }\r\n  }\r\n\r\n  static void display(Calendar ${entry4:newName(com.google.api.services.calendar.model.Calendar)}) {\r\n    System.out.println(\"ID: \" + ${entry4}.getId());\r\n    System.out.println(\"Summary: \" + ${entry4}.getSummary());\r\n    if (${entry4}.getDescription() !\u003d null) {\r\n      System.out.println(\"Description: \" + ${entry4}.getDescription());\r\n    }\r\n  }\r\n\r\n  static void display(Event ${event:newName(com.google.api.services.calendar.model.Event)}) {\r\n    if (${event}.getStart() !\u003d null) {\r\n      System.out.println(\"Start Time: \" + ${event}.getStart());\r\n    }\r\n    if (${event}.getEnd() !\u003d null) {\r\n      System.out.println(\"End Time: \" + ${event}.getEnd());\r\n    }\r\n  }\r\n}\r\n\r\n${import:import(com.google.api.services.calendar.model.Calendar, com.google.api.services.calendar.model.CalendarList, com.google.api.services.calendar.model.CalendarListEntry, com.google.api.services.calendar.model.Event, com.google.api.services.calendar.model.Events)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
