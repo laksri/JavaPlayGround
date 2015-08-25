@@ -1,0 +1,24 @@
+{
+  "uuid": "b94d3f64-8524-4de7-8252-84bbaf8e731b",
+  "name": "SQLDB_Connect",
+  "description": "Connect to JDBC URL",
+  "extraSearchTerms": [
+    "SQLDB",
+    "JDBC",
+    "URL",
+    "Connect"
+  ],
+  "tags": [
+    "SQLDB",
+    "CONNECT"
+  ],
+  "code": "// Connect to Database using JDBC URL\r\nStatement ${stmt:newName(java.sql.Statement)} \u003d null;\t\t\r\n\r\njava.sql.Connection ${con:newName(java.sql.Connection)} \u003d null; \r\ntry\r\n{\r\n\tClass.forName(\"com.ibm.db2.jcc.DB2Driver\").newInstance(); \r\n}\r\ncatch ( Exception ${e:newName(java.lang.Exception)} )\r\n{\r\n\tSystem.out.println(\"Error: Failed to Db2 jcc driver.\"); \r\n}\r\n\r\ntry\r\n{\r\n\tSystem.out.println(\"url: \" + ${url:var(java.lang.String)});\r\n\t${con} \u003d java.sql.DriverManager.getConnection(${url:var(java.lang.String)}, ${properties:var(java.util.Properties)});\r\n\t${stmt} \u003d ${con}.createStatement();\r\n\tSystem.out.println(\"Successfully connected the Database\" + ${DatabaseName:var(java.lang.String)});\r\n\r\n}catch (SQLException ${e2:newName(java.sql.SQLException)}) {\r\n\tSystem.out.println(\"Error creating schema: \" + ${e2});\r\n}\r\n${import:import(java.sql.SQLException, java.sql.Statement)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
