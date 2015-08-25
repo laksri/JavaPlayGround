@@ -1,0 +1,22 @@
+{
+  "uuid": "e7301539-b5ee-44d3-84cc-f0e22e3108d4",
+  "name": "SQLDB_Disconnect",
+  "description": "Close all Statements and Connections",
+  "extraSearchTerms": [
+    "SQLDB",
+    "Disconnect"
+  ],
+  "tags": [
+    "SQLDB",
+    "Disconnect"
+  ],
+  "code": "// Close everything off\r\ntry {\r\n\t// Close the Statement\r\n\t${stmt:var(java.sql.Statement)}.close();\r\n\t// Connection must be on a unit-of-work boundary to allow close\r\n\t${con:var(java.sql.Connection)}.commit();\r\n\t// Close the connection\r\n\t${con:var(java.sql.Connection)}.close();\r\n\tSystem.out.println(\"Finished\");\r\n\r\n} catch (SQLException ${e:newName(java.sql.SQLException)}) {\r\n\tSystem.out.println(\"Error closing things off\");\r\n\tSystem.out.println(\"SQL Exception: \" + ${e});\r\n}\r\n${import:import(java.sql.SQLException)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
