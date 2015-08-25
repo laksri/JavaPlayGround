@@ -1,0 +1,23 @@
+{
+  "uuid": "38956f75-d903-487d-9864-2b6bf69c3f7c",
+  "name": "SQLDB_URL_String",
+  "description": "Create the JDBC URL String",
+  "extraSearchTerms": [
+    "SQLDB_URL",
+    "SQLDB",
+    "URL"
+  ],
+  "tags": [
+    "SQLDB",
+    "URL"
+  ],
+  "code": "java.util.Properties ${properties:newName(java.util.Properties)} \u003d new java.util.Properties();\r\n\r\n${properties}.put(\"user\", ${user:var(java.lang.String)});\r\n${properties}.put(\"password\", ${userPassword:var(java.lang.String)});\r\n${properties}.put(\"sslConnection\", \"true\");\r\n\r\nString ${url:newName(java.lang.String)} \u003d \"jdbc:db2://\" + ${ServerName:var(java.lang.String)} + \":\"+ ${PortNumber:var(int)} + \"/\" +\r\n\t\t${DatabaseName:var(java.lang.String)} + \":traceFile\u003dfoobar.txt;traceLevel\u003d\"+ 0xFFFFFFFF+ \";\";\r\n${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
