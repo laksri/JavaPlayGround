@@ -1,0 +1,20 @@
+{
+  "uuid": "8fe4650d-85a4-4a2f-b2fd-a70d6e1742bc",
+  "name": "Google_Map_Geocode",
+  "description": "Geocode an Address via Google Map",
+  "extraSearchTerms": [
+    "Google",
+    "Map",
+    "Geocode"
+  ],
+  "tags": [],
+  "code": "GeoApiContext ${context:newName(com.google.maps.GeoApiContext)} \u003d new GeoApiContext().setApiKey(\"AIzaSyBYSIioR21GOELcN4gtxNqQtZAyHsDrYUE\");\r\n${context}.setQueryRateLimit(60, 50);\r\nGeocodingResult[] ${results:newName(\u0027com.google.maps.model.GeocodingResult[]\u0027)} \u003d GeocodingApi.geocode(${context}, \"1600 Amphitheatre Parkway Mountain View, CA 94043\")\r\n\t\t.await();\r\nSystem.out.println(${results}[0].${formattedAddress:field(java.lang.String)});\r\n${import:import(com.google.maps.GeoApiContext, com.google.maps.GeocodingApi, com.google.maps.model.GeocodingResult)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
