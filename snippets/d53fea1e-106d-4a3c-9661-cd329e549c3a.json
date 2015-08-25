@@ -1,0 +1,27 @@
+{
+  "uuid": "d53fea1e-106d-4a3c-9661-cd329e549c3a",
+  "name": "Redis_Crud",
+  "description": "Redis CRUD ",
+  "extraSearchTerms": [
+    "Redis",
+    "CRUD"
+  ],
+  "tags": [
+    "Redis",
+    "CRUD"
+  ],
+  "code": "public class RedisCrud {\r\n\r\n    private Jedis ${jedis:newName(redis.clients.jedis.Jedis)};\r\n    \r\n   public RedisCrud(){\r\n       ${jedis} \u003d new Jedis(\"localhost\",2711);\r\n   }\r\n   \r\n   public void store(String ${key:newName(java.lang.String)},String ${value:newName(java.lang.String)}){\r\n       ${jedis}.set(${key}, ${value});\r\n   }\r\n   \r\n   public String retrieve(String ${key2:newName(java.lang.String)}){\r\n      return  ${jedis}.get(${key2});\r\n   }\r\n   \r\n   public void update(String ${key3:newName(java.lang.String)},String ${newvalue:newName(java.lang.String)}){\r\n       ${jedis}.set(${key3}, ${newvalue});\r\n   }\r\n   \r\n   public void delete(String ${key4:newName(java.lang.String)}){\r\n       ${jedis}.del(${key4});\r\n   }\r\n   \r\n    public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) {\r\n        RedisCrud ${mc:newName(com.ibm.thirdparty.database.RedisCrud)}\u003dnew RedisCrud();\r\n        \r\n         ${mc}.store(\"name\", \"javasnippet\");\r\n        System.out.println(${mc}.retrieve(\"name\"));\r\n        \r\n        ${mc}.update(\"name\",\"expertjjava\");\r\n         System.out.println(${mc}.retrieve(\"name\"));\r\n         \r\n       ${mc}.delete(\"name\");\r\n        \r\n    }\r\n   \r\n}\r\n${import:import(redis.clients.jedis.Jedis)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "redis.clients",
+      "artifactId": "jedis",
+      "version": "0.0.0"
+    }
+  ]
+}
