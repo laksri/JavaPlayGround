@@ -1,0 +1,21 @@
+{
+  "uuid": "428c8fb0-ee7e-42b4-b1bb-12e6b208053d",
+  "name": "Watson_QA",
+  "description": "Watson Question and Answer",
+  "extraSearchTerms": [
+    "Watson",
+    "Question",
+    "Answer",
+    "QA"
+  ],
+  "tags": [],
+  "code": "QuestionAndAnswer ${qat:newName(com.ibm.watson.developer_cloud.question_and_answer.v1.QuestionAndAnswer)} \u003d new QuestionAndAnswer();\r\ntry {\r\n\t${qat}.setUsernameAndPassword(\r\n\t\t\t\"ca016c67-86cb-423c-9f77-e1fdfd335330\",\r\n\t\t\t\"2vC2caUNHTa9\"\r\n\t\t\t);\r\n\t${qat}.setEndPoint(\"https://gateway.watsonplatform.net/question-and-answer-beta/api\");\r\n} catch (Exception ${e1:newName(java.lang.Exception)}) {\r\n\t${e1}.printStackTrace();\r\n}\r\n${qat}.setDataset(QuestionAndAnswerDataset.HEALTHCARE);\r\nQuestionInformation ${qi:newName(com.ibm.watson.developer_cloud.question_and_answer.v1.model.QuestionInformation)} \u003d new QuestionInformation()\r\n.withEvidenceRequest(new EvidenceRequest().withItems(2))\r\n.withQuestionText(\"What is migrane?\");\r\n\r\nList\u003cPipeline\u003e ${answersJson:newName(java.util.List)} \u003d ${qat}.ask(new WatsonQuestion(${qi}));\t\t\r\nfor (int ${i:newName(int)} \u003d 0; ${i} \u003c ${answersJson}.size(); ${i}++) {\r\n\tPipeline ${element:newName(com.ibm.watson.developer_cloud.question_and_answer.v1.model.Pipeline)} \u003d ${answersJson}.get(${i});\r\n\tList\u003cAnswer\u003e ${answers:newName(java.util.List)} \u003d ${element}.getQuestion().getAnswers();\r\n\tfor (int ${j:newName(int)} \u003d 0; ${j} \u003c ${answers}.size(); ${j}++) {\r\n\t\tAnswer ${answer:newName(com.ibm.watson.developer_cloud.question_and_answer.v1.model.Answer)} \u003d ${answers}.get(${j});\r\n\t\tSystem.out.println(${answer});\r\n\t}\r\n}\r\n${import:import(com.ibm.watson.developer_cloud.question_and_answer.v1.QuestionAndAnswer, com.ibm.watson.developer_cloud.question_and_answer.v1.model.Answer, com.ibm.watson.developer_cloud.question_and_answer.v1.model.EvidenceRequest, com.ibm.watson.developer_cloud.question_and_answer.v1.model.Pipeline, com.ibm.watson.developer_cloud.question_and_answer.v1.model.QuestionAndAnswerDataset, com.ibm.watson.developer_cloud.question_and_answer.v1.model.QuestionInformation, com.ibm.watson.developer_cloud.question_and_answer.v1.model.WatsonQuestion, java.util.List)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
