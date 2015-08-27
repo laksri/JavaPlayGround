@@ -1,0 +1,18 @@
+{
+  "uuid": "d91bca55-2920-4ec9-815a-51a9dda81bdf",
+  "name": "LinkedIn_API",
+  "description": "Using LinkedIn API",
+  "extraSearchTerms": [
+    "LinkedIn"
+  ],
+  "tags": [],
+  "code": "\r\npublic class LinkedInIntegration {\r\n\r\n\tstatic String ${consumerKey:newName(java.lang.String)} \u003d \"75a9pekr6274o5\";\r\n\tstatic String ${consumerSecret:newName(java.lang.String)} \u003d \"fBYOF9Zd3sxsqvay\";\r\n\r\n\tpublic void getLinkedInUserDetails() {\r\n\t\tScanner ${sc:newName(java.util.Scanner)} \u003d new Scanner(System.in);\r\n\t\t// OAuth Flow\r\n\t\tfinal LinkedInOAuthService ${oauthService:newName(com.google.code.linkedinapi.client.oauth.LinkedInOAuthService)} \u003d LinkedInOAuthServiceFactory.getInstance()\r\n\t\t\t\t.createLinkedInOAuthService(${consumerKey}, ${consumerSecret});\r\n\t\tLinkedInRequestToken ${requestToken:newName(com.google.code.linkedinapi.client.oauth.LinkedInRequestToken)} \u003d ${oauthService}.getOAuthRequestToken();\r\n\t\tString ${authUrl:newName(java.lang.String)} \u003d ${requestToken}.getAuthorizationUrl();\r\n\t\tSystem.out.println(\"Now go and authorize Linked in here:\");\r\n\t\tSystem.out.println(${authUrl});\r\n\t\tSystem.out.println(\"And paste the verifier here\");\r\n\t\tSystem.out.print(\"\u003e\u003e\");\r\n\t\tString ${oAuthVerifier:newName(java.lang.String)} \u003d ${sc}.nextLine();\r\n\r\n\t\tLinkedInAccessToken ${accessToken:newName(com.google.code.linkedinapi.client.oauth.LinkedInAccessToken)} \u003d ${oauthService}.getOAuthAccessToken(${requestToken}, ${oAuthVerifier});\r\n\t\t// Create Client API Factory\r\n\t\tfinal LinkedInApiClientFactory ${factory:newName(com.google.code.linkedinapi.client.LinkedInApiClientFactory)} \u003d LinkedInApiClientFactory.newInstance(${consumerKey}, ${consumerSecret});\r\n\r\n\t\tfinal LinkedInApiClient ${client:newName(com.google.code.linkedinapi.client.LinkedInApiClient)} \u003d ${factory}.createLinkedInApiClient(${accessToken});\r\n\r\n\t\tPerson ${profile:newName(com.google.code.linkedinapi.schema.Person)} \u003d ${client}.getProfileForCurrentUser();\r\n\t\tSystem.out.println(\r\n\t\t\t\t\"\" + ${profile}.getFirstName() + \"  \" + ${profile}.getLastName() + \"  \" + ${profile}.getPublicProfileUrl());\r\n\r\n\t}\r\n\r\n\tpublic static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) {\r\n\t\tnew LinkedInIntegration().getLinkedInUserDetails();\r\n\t}\r\n\r\n}\r\n\r\n${import:import(com.google.code.linkedinapi.client.LinkedInApiClient, com.google.code.linkedinapi.client.LinkedInApiClientFactory, com.google.code.linkedinapi.client.oauth.LinkedInAccessToken, com.google.code.linkedinapi.client.oauth.LinkedInOAuthService, com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory, com.google.code.linkedinapi.client.oauth.LinkedInRequestToken, com.google.code.linkedinapi.schema.Person, java.util.Scanner)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
