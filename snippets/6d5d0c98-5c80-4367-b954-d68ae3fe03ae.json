@@ -1,0 +1,14 @@
+{
+  "uuid": "6d5d0c98-5c80-4367-b954-d68ae3fe03ae",
+  "name": "Mobile_AndroidLab_2b",
+  "description": "Toast Message",
+  "extraSearchTerms": [
+    "Android",
+    "Lab",
+    "Toast"
+  ],
+  "tags": [],
+  "code": "Toast ${toastMessage:newName(android.widget.Toast)} \u003d Toast.makeText(this, \"Created !!!\", Toast.LENGTH_LONG);\r\n${toastMessage}.show();\r\n${import:import(android.widget.Toast)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
