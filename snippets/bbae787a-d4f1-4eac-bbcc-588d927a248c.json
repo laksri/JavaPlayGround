@@ -1,0 +1,14 @@
+{
+  "uuid": "bbae787a-d4f1-4eac-bbcc-588d927a248c",
+  "name": "Mobile_AndroidLab_1c",
+  "description": "Adding Logcat tag:MainActivity in onCreate",
+  "extraSearchTerms": [
+    "Logcat",
+    "Mobile",
+    "Lab"
+  ],
+  "tags": [],
+  "code": "Log.i(this.getClass().getName() , \"in onCreate\");\r\n${import:import(android.util.Log)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
