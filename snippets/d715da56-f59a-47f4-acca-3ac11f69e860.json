@@ -1,0 +1,23 @@
+{
+  "uuid": "d715da56-f59a-47f4-acca-3ac11f69e860",
+  "name": "Facebook_API",
+  "description": "Use Facebook API",
+  "extraSearchTerms": [
+    "Facebook"
+  ],
+  "tags": [],
+  "code": "public class FaceBookApi {\r\n\r\n\tpublic void facebookSnippet() {\r\n\t\t// Make the configuration builder\r\n\t\tConfigurationBuilder ${confBuilder:newName(facebook4j.conf.ConfigurationBuilder)} \u003d new ConfigurationBuilder();\r\n\t\t${confBuilder}.setDebugEnabled(true);\r\n\r\n\t\t// Set application id, secret key and access token\r\n\t\t${confBuilder}.setOAuthAppId(\"803756889721320\");\r\n\t\t${confBuilder}.setOAuthAppSecret(\"779f7f01f2b6a11de939178645e86565\");\r\n\t\t${confBuilder}.setOAuthAccessToken(\r\n\t\t\t\t\"CAACEdEose0cBABZBoexU3EQfty0byUf6abC7UtUaFHmiR0kZAZAZBPeiYJfDuf68ZB2aLwrPMsYovF3Nx4Ydx7eTyygv4mW0CElA2fTq9V5j1FXGtZAZByHVLPQPic8dOaL4ktyID8KYZCDotYZCJZC8FQjOHBZAAw6ZCHvac0bwztYKC4v19FC1BhgRRqIFN88PeG8UTI4WerIBowdHOlvicuKjlZCHhPCt9yAsZD\");\r\n\r\n\t\t// Set permission\r\n\t\t${confBuilder}.setOAuthPermissions(\"email, id, name, first_name, last_name, generic\");\r\n\t\t${confBuilder}.setUseSSL(true);\r\n\t\t${confBuilder}.setJSONStoreEnabled(true);\r\n\r\n\t\t// Create configuration object\r\n\t\tConfiguration ${configuration:newName(facebook4j.conf.Configuration)} \u003d ${confBuilder}.build();\r\n\r\n\t\t// Create facebook instance\r\n\t\tFacebookFactory ${ff:newName(facebook4j.FacebookFactory)} \u003d new FacebookFactory(${configuration});\r\n\t\tFacebook ${facebook:newName(facebook4j.Facebook)} \u003d ${ff}.getInstance();\r\n\t\ttry {\r\n\r\n\t\t\t// Get facebook posts\r\n\t\t\tString ${results:newName(java.lang.String)} \u003d getFacebookPostes(${facebook});\r\n\r\n\t\t\tSystem.out.println(${results});\r\n\t\t} catch (Exception ${e:newName(java.lang.Exception)}) {\r\n\t\t\t${e}.printStackTrace();\r\n\t\t}\r\n\t}\r\n\r\n\tpublic static String getFacebookPostes(Facebook ${facebook2:newName(facebook4j.Facebook)}) throws FacebookException {\r\n\t\t// Get posts for a particular search\r\n\t\tResponseList ${results2:newName(facebook4j.ResponseList)} \u003d ${facebook2}.getPosts(\"adidas\");\r\n\t\treturn ${results2}.toString();\r\n\t}\r\n\r\n\tpublic static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) throws FacebookException {\r\n\t\tFaceBookApi ${fimpl:newName(com.ibm.thirdparty.FaceBookApi)} \u003d new FaceBookApi();\r\n\t\t${fimpl}.facebookSnippet();\r\n\t}\r\n\r\n}\r\n${import:import(facebook4j.Facebook, facebook4j.FacebookException, facebook4j.FacebookFactory, facebook4j.ResponseList, facebook4j.conf.Configuration, facebook4j.conf.ConfigurationBuilder)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "org.facebook4j",
+      "artifactId": "facebook4j-core",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
