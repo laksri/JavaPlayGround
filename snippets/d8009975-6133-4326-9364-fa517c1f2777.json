@@ -1,0 +1,31 @@
+{
+  "uuid": "d8009975-6133-4326-9364-fa517c1f2777",
+  "name": "Flickr_API",
+  "description": "Using Flickr API",
+  "extraSearchTerms": [
+    "Flickr",
+    "API"
+  ],
+  "tags": [
+    "Flickr"
+  ],
+  "code": "public class FlickrApi\r\n{\r\n\r\n  static String ${apiKey:newName(java.lang.String)}\u003d\"63037b53762ca7fbef4289a53da034df\";\r\n\r\n  static String ${sharedSecret:newName(java.lang.String)}\u003d\"4ae3b9473cb0801f\";\r\n  \r\n public static void auth() throws IOException, FlickrException {\r\n        \r\n\r\n        Flickr ${flickr:newName(com.flickr4java.flickr.Flickr)} \u003d new Flickr(${apiKey}, ${sharedSecret}, new REST());\r\n        Flickr.debugStream \u003d false;\r\n        AuthInterface ${authInterface:newName(com.flickr4java.flickr.auth.AuthInterface)} \u003d ${flickr}.getAuthInterface();\r\n\r\n        Scanner ${scanner:newName(java.util.Scanner)} \u003d new Scanner(System.in);\r\n\r\n        Token ${token:newName(org.scribe.model.Token)} \u003d ${authInterface}.getRequestToken();\r\n        System.out.println(\"token: \" + ${token});\r\n\r\n        String ${url:newName(java.lang.String)} \u003d ${authInterface}.getAuthorizationUrl(${token}, Permission.DELETE);\r\n        System.out.println(\"Follow this URL to authorise yourself on Flickr\");\r\n        System.out.println(${url});\r\n        System.out.println(\"Paste in the token it gives you:\");\r\n        System.out.print(\"\u003e\u003e\");\r\n\r\n        String ${tokenKey:newName(java.lang.String)} \u003d ${scanner}.nextLine();\r\n        ${scanner}.close();\r\n\r\n        Token ${requestToken:newName(org.scribe.model.Token)} \u003d ${authInterface}.getAccessToken(${token}, new Verifier(${tokenKey}));\r\n        System.out.println(\"Authentication success\");\r\n\r\n        Auth ${auth:newName(com.flickr4java.flickr.auth.Auth)} \u003d ${authInterface}.checkToken(${requestToken});\r\n\r\n        // This token can be used until the user revokes it.\r\n        System.out.println(\"Token: \" + ${requestToken}.getToken());\r\n        System.out.println(\"Secret: \" + ${requestToken}.getSecret());\r\n        System.out.println(\"nsid: \" + ${auth}.getUser().getId());\r\n        System.out.println(\"Realname: \" + ${auth}.getUser().getRealName());\r\n        System.out.println(\"Username: \" + ${auth}.getUser().getUsername());\r\n        System.out.println(\"Permission: \" + ${auth}.getPermission().getType());\r\n    }\r\n\r\n    public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) {\r\n        try {\r\n            FlickrApi.auth();\r\n        } catch (Exception ${e:newName(java.lang.Exception)}) {\r\n            ${e}.printStackTrace();\r\n        }\r\n        System.exit(0);\r\n    }\r\n}\r\n${import:import(com.flickr4java.flickr.Flickr, com.flickr4java.flickr.FlickrException, com.flickr4java.flickr.REST, com.flickr4java.flickr.auth.Auth, com.flickr4java.flickr.auth.AuthInterface, com.flickr4java.flickr.auth.Permission, java.io.IOException, java.util.Scanner, org.scribe.model.Token, org.scribe.model.Verifier)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "com.flickr4java",
+      "artifactId": "flickr4java",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "org.scribe",
+      "artifactId": "scribe",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
