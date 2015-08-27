@@ -1,0 +1,20 @@
+{
+  "uuid": "6856751f-4b6a-4ffa-9166-350558314131",
+  "name": "Watson_LanguageID",
+  "description": "Watson Language Identification",
+  "extraSearchTerms": [
+    "Watson",
+    "Language",
+    "Identification"
+  ],
+  "tags": [],
+  "code": "LanguageIdentification ${lit:newName(com.ibm.watson.developer_cloud.language_identification.v1.LanguageIdentification)} \u003d new LanguageIdentification();\t\r\ntry {\r\n\t${lit}.setUsernameAndPassword(\r\n\t\t\t\"ca016c67-86cb-423c-9f77-e1fdfd335330\",\r\n\t\t\t\"2vC2caUNHTa9\"\r\n\t\t\t);\r\n\t${lit}.setEndPoint(\"https://gateway.watsonplatform.net/language-identification-beta/api\");\r\n} catch (Exception ${e1:newName(java.lang.Exception)}) {\r\n\t// TODO Auto-generated catch block\r\n\t${e1}.printStackTrace();\r\n}\r\nIdentifiedLanguage ${lang:newName(com.ibm.watson.developer_cloud.language_identification.v1.model.IdentifiedLanguage)} \u003d ${lit}.identify(\"Good Morning\");\r\nSystem.out.println(${lang});\r\n${import:import(com.ibm.watson.developer_cloud.language_identification.v1.LanguageIdentification, com.ibm.watson.developer_cloud.language_identification.v1.model.IdentifiedLanguage)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
