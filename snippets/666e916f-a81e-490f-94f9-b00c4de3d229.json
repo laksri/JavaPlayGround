@@ -1,0 +1,13 @@
+{
+  "uuid": "666e916f-a81e-490f-94f9-b00c4de3d229",
+  "name": "Mobile_AndroidLab_1b",
+  "description": "Set the Text View with Hello New World",
+  "extraSearchTerms": [
+    "Android",
+    "Lab"
+  ],
+  "tags": [],
+  "code": "@Override\r\nprotected void onCreate(Bundle ${savedInstanceState:newName(android.os.Bundle)}) {\r\n\tsuper.onCreate(${savedInstanceState});\r\n\t//setContentView(R.layout.activity_main);\r\n\t\r\n\tTextView ${h:newName(android.widget.TextView)} \u003d new TextView(this);\r\n\t${h}.setText(\"Hello New World!\");\r\n\tsetContentView(${h});\r\n\t\r\n}\r\n${import:import(android.os.Bundle, android.widget.TextView)}${cursor}\r\n",
+  "location": "JAVA_STATEMENTS",
+  "dependencies": []
+}
