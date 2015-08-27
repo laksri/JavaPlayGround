@@ -1,0 +1,22 @@
+{
+  "uuid": "b0bc9b00-d8ff-4e37-b9e9-299339d752a0",
+  "name": "Watson_MachineTranslation",
+  "description": "Watson Machine Translation",
+  "extraSearchTerms": [
+    "Watson",
+    "Machine",
+    "Translation"
+  ],
+  "tags": [
+    "Watson"
+  ],
+  "code": "MachineTranslation ${mtservice:newName(com.ibm.watson.developer_cloud.machine_translation.v1.MachineTranslation)} \u003d new MachineTranslation();\r\ntry {\r\n\t${mtservice}.setUsernameAndPassword(\r\n\t\t\t\"ca016c67-86cb-423c-9f77-e1fdfd335330\",\r\n\t\t\t\"2vC2caUNHTa9\"\r\n\t\t\t);\r\n\t${mtservice}.setEndPoint(\"https://gateway.watsonplatform.net/machine-translation-beta/api\");\r\n} catch (Exception ${e1:newName(java.lang.Exception)}) {\r\n\t${e1}.printStackTrace();\r\n}\t\t\r\nString ${response:newName(java.lang.String)} \u003d ${mtservice}.translate(\"The IBM ECOD team is awesome\",\r\n\t\tLanguage.ENGLISH, Language.SPANISH);\r\nSystem.out.println(${response});\r\n${import:import(com.ibm.watson.developer_cloud.machine_translation.v1.MachineTranslation, com.ibm.watson.developer_cloud.machine_translation.v1.model.Language)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
