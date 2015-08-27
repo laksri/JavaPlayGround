@@ -7,7 +7,7 @@
     "Lab"
   ],
   "tags": [],
-  "code": "@Override\r\nprotected void onCreate(Bundle ${savedInstanceState:newName(android.os.Bundle)}) {\r\n\tsuper.onCreate(${savedInstanceState});\r\n\t//setContentView(R.layout.activity_main);\r\n\t\r\n\tTextView ${h:newName(android.widget.TextView)} \u003d new TextView(this);\r\n\t${h}.setText(\"Hello New World!\");\r\n\tsetContentView(${h});\r\n\t\r\n}\r\n${import:import(android.os.Bundle, android.widget.TextView)}${cursor}\r\n",
+  "code": "\r\n\t// comment out setContentView(R.layout.activity_main);\r\n\t\r\n\tTextView ${h:newName(android.widget.TextView)} \u003d new TextView(this);\r\n\t${h}.setText(\"Hello New World!\");\r\n\tsetContentView(${h});\r\n\t\r\n\r\n${import:import(android.os.Bundle, android.widget.TextView)}${cursor}\r\n",
   "location": "JAVA",
   "dependencies": []
 }
