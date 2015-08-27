@@ -1,0 +1,20 @@
+{
+  "uuid": "4d9c13da-06fe-4f8f-8a7a-f384a8604166",
+  "name": "Watson_ConceptExpansion",
+  "description": "Using Watson Concept Exapansion",
+  "extraSearchTerms": [
+    "Watson",
+    "Concept",
+    "Expansion"
+  ],
+  "tags": [],
+  "code": "ConceptExpansion ${cet:newName(com.ibm.watson.developer_cloud.concept_expansion.v1.ConceptExpansion)} \u003d new ConceptExpansion();\t\r\ntry {\r\n\t${cet}.setUsernameAndPassword(\r\n\t\t\t\"ca016c67-86cb-423c-9f77-e1fdfd335330\",\r\n\t\t\t\"2vC2caUNHTa9\"\r\n\t\t\t);\r\n\t${cet}.setEndPoint(\"https://gateway.watsonplatform.net/concept-expansion-beta/api\");\r\n} catch (Exception ${e1:newName(java.lang.Exception)}) {\r\n\t${e1}.printStackTrace();\r\n}\r\nString []${seeds:newName(\u0027java.lang.String[]\u0027)} \u003d new String[]{\"motrin\",\"tylenol\",\"aspirin\"};\r\nString ${label:newName(java.lang.String)} \u003d \"medicine\";\r\n${cet}.setDataset(ConceptExpansionDataset.MT_SAMPLES);\r\n\r\nJob ${job:newName(com.ibm.watson.developer_cloud.concept_expansion.v1.model.Job)} \u003d ${cet}.createJob(${label}, ${seeds});\r\nStatus ${status:newName(com.ibm.watson.developer_cloud.concept_expansion.v1.model.Job.Status)} \u003d ${cet}.getJobStatus(${job});\r\n\r\nwhile (${status} \u003d\u003d Status.AWAITING_WORK || ${status} \u003d\u003d Status.IN_FLIGHT) {\r\n\t${status} \u003d ${cet}.getJobStatus(${job});\r\n\ttry {\r\n\t\tThread.sleep(1000);\r\n\t} catch (InterruptedException ${e:newName(java.lang.InterruptedException)}) {\r\n\t\tthrow new RuntimeException(${e});\r\n\t}\r\n}\r\n\r\nif (${status} \u003d\u003d Status.DONE) {\r\n\tList\u003cConcept\u003e ${concepts:newName(java.util.List)} \u003d ${cet}.getJobResult(${job});\r\n\tfor (int ${i:newName(int)} \u003d 0; ${i} \u003c ${concepts}.size(); ${i}++) {\r\n\t\tConcept ${element:newName(com.ibm.watson.developer_cloud.concept_expansion.v1.model.Concept)} \u003d ${concepts}.get(${i});\r\n\t\tSystem.out.println(${element});\r\n\t}\r\n\t\r\n} else {\r\n\tSystem.out.println(\"The concept coudn\u0027t be expanded\");\r\n}\r\n${import:import(com.ibm.watson.developer_cloud.concept_expansion.v1.ConceptExpansion, com.ibm.watson.developer_cloud.concept_expansion.v1.model.Concept, com.ibm.watson.developer_cloud.concept_expansion.v1.model.ConceptExpansionDataset, com.ibm.watson.developer_cloud.concept_expansion.v1.model.Job, com.ibm.watson.developer_cloud.concept_expansion.v1.model.Job.Status, java.util.List)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
