@@ -1,0 +1,27 @@
+{
+  "uuid": "dfb6eb12-67b5-4e0c-ba48-88420a2833b1",
+  "name": "Mongo_CRUD",
+  "description": "Mongo CRUD Operations",
+  "extraSearchTerms": [
+    "Mongo",
+    "CRUD"
+  ],
+  "tags": [
+    "Mongo",
+    "CRUD"
+  ],
+  "code": "\r\npublic class MongoCrud {\r\n    \r\n    private static   MongoClient ${mongo:newName(com.mongodb.MongoClient)};\r\n    \r\n    public static  MongoClient getConnection()throws Exception{\r\n        if(${mongo}\u003d\u003dnull){\r\n         ${mongo} \u003d new MongoClient(\"localhost\", 27017);      \r\n        }\r\n        return ${mongo};\r\n    }\r\n    \r\n    public static  void insert(){\r\n        CrudUser ${user:newName(com.ibm.third.helper.CrudUser)} \u003d new CrudUser();\r\n        ${user}.setId(2);\r\n        ${user}.setName(\"javasnippet\");\r\n        ${user}.setRole(\"Administrator\");\r\n        DBObject ${doc:newName(com.mongodb.DBObject)} \u003d createDBObject(${user});\r\n        \r\n         DB ${db:newName(com.mongodb.DB)} \u003d ${mongo}.getDB(\"testDB\");\r\n         // If password is enabled in MongoDB\r\n          ${db}.authenticate(\"root\",\"root@123\".toCharArray());\r\n\r\n         DBCollection ${col:newName(com.mongodb.DBCollection)} \u003d ${db}.getCollection(\"users\");\r\n         \r\n        //create user\r\n        WriteResult ${result:newName(com.mongodb.WriteResult)} \u003d ${col}.insert(${doc});\r\n        System.out.println(${result}.getUpsertedId());\r\n        System.out.println(${result}.getN());\r\n        System.out.println(${result}.isUpdateOfExisting());\r\n\r\n         \r\n        //read example\r\n        DBObject ${query:newName(com.mongodb.DBObject)} \u003d BasicDBObjectBuilder.start().add(\"_id\", ${user}.getId()).get();\r\n        DBCursor ${cursor:newName(com.mongodb.DBCursor)} \u003d ${col}.find(${query});\r\n        while(${cursor}.hasNext()){\r\n            System.out.println(${cursor}.next());\r\n        }\r\n         \r\n        //update example\r\n        ${user}.setName(\"Java Snippet\");\r\n        ${user}.setRole(\"Staff\");\r\n        ${doc} \u003d createDBObject(${user});\r\n        ${result} \u003d ${col}.update(${query}, ${doc});\r\n        System.out.println(${result}.getUpsertedId());\r\n        System.out.println(${result}.getN());\r\n        System.out.println(${result}.isUpdateOfExisting());\r\n  \r\n         \r\n        //delete example\r\n        ${result} \u003d ${col}.remove(${query});\r\n        System.out.println(${result}.getUpsertedId());\r\n        System.out.println(${result}.getN());\r\n        System.out.println(${result}.isUpdateOfExisting());\r\n         \r\n        //close resources\r\n        ${mongo}.close();\r\n        \r\n    }\r\n    \r\n     private static DBObject createDBObject(CrudUser ${user2:newName(com.ibm.third.helper.CrudUser)}) {\r\n        BasicDBObjectBuilder ${docBuilder:newName(com.mongodb.BasicDBObjectBuilder)} \u003d BasicDBObjectBuilder.start();\r\n                                 \r\n        ${docBuilder}.append(\"_id\", ${user2}.getId());\r\n        ${docBuilder}.append(\"name\", ${user2}.getName());\r\n        ${docBuilder}.append(\"role\", ${user2}.getRole());\r\n        return ${docBuilder}.get();\r\n    }\r\n \r\n    /**\r\n     * @param ${args} the command line arguments\r\n     */\r\n    public static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) {\r\n        // TODO code application logic here\r\n    }\r\n    \r\n}\r\n\r\n${import:import(com.ibm.third.helper.CrudUser, com.mongodb.BasicDBObjectBuilder, com.mongodb.DB, com.mongodb.DBCollection, com.mongodb.DBCursor, com.mongodb.DBObject, com.mongodb.MongoClient, com.mongodb.WriteResult)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "org.mongodb.mongo-java-driver",
+      "artifactId": "org.mongodb.mongo-java-driver",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
