@@ -1,0 +1,20 @@
+{
+  "uuid": "4dee4461-de7a-428a-b4e0-7d1361e0a709",
+  "name": "Watson_RelationshipExtraction",
+  "description": "Watson Relationship Extraction",
+  "extraSearchTerms": [
+    "Watson",
+    "Relationship",
+    "Extraction"
+  ],
+  "tags": [],
+  "code": "RelationshipExtraction ${ret:newName(com.ibm.watson.developer_cloud.relationship_extraction.v1.RelationshipExtraction)} \u003d new RelationshipExtraction();\r\ntry {\r\n\t${ret}.setUsernameAndPassword(\r\n\t\t\t\"ca016c67-86cb-423c-9f77-e1fdfd335330\",\r\n\t\t\t\"2vC2caUNHTa9\"\r\n\t\t\t);\r\n\t${ret}.setEndPoint(\"https://gateway.watsonplatform.net/relationship-extraction-beta/api\");\r\n} catch (Exception ${e1:newName(java.lang.Exception)}) {\r\n\t${e1}.printStackTrace();\r\n}\r\n${ret}.setDataset(RelationshipExtractionDataset.ENGLISH_NEWS);\r\nString ${response:newName(java.lang.String)} \u003d ${ret}.extract(\"John works in IBM. John kicked the ball.\");\r\nSystem.out.println(${response});\r\n${import:import(com.ibm.watson.developer_cloud.relationship_extraction.v1.RelationshipExtraction, com.ibm.watson.developer_cloud.relationship_extraction.v1.model.RelationshipExtractionDataset)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
