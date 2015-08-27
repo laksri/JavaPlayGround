@@ -1,0 +1,26 @@
+{
+  "uuid": "c253e50a-f48b-4eae-b944-ec4f74b49e14",
+  "name": "Twitter_API",
+  "description": "Using Twitter API",
+  "extraSearchTerms": [
+    "Twitter",
+    "API"
+  ],
+  "tags": [
+    "Twitter"
+  ],
+  "code": "public class TwitterApi\r\n{\r\n     static String ${consumerKey:newName(java.lang.String)}\u003d\"sYxK5cD3TEQ7Q4X4otpmgJ6Cp\";\r\n      static String ${consumerSecret:newName(java.lang.String)}\u003d\"cfpulmTnszaJx9248WX3GfwHtpLtphIkoByz1ZovnQt8dPw4lO\";\r\n  public static void main(String[] ${arg:newName(\u0027java.lang.String[]\u0027)}) {\r\n    \r\n        try {\r\n           \r\n         \r\n             \r\n            Twitter ${twitter:newName(twitter4j.Twitter)} \u003d new TwitterFactory().getInstance();\r\n            ${twitter}.setOAuthConsumer(${consumerKey}, ${consumerSecret});\r\n            RequestToken ${requestToken:newName(twitter4j.auth.RequestToken)} \u003d ${twitter}.getOAuthRequestToken();\r\n            System.out.println(\"Got request token.\");\r\n            System.out.println(\"Request token: \" + ${requestToken}.getToken());\r\n            System.out.println(\"Request token secret: \" + ${requestToken}.getTokenSecret());\r\n            AccessToken ${accessToken:newName(twitter4j.auth.AccessToken)} \u003d null;\r\n\r\n            BufferedReader ${br:newName(java.io.BufferedReader)} \u003d new BufferedReader(new InputStreamReader(System.in));\r\n            while (null \u003d\u003d ${accessToken}) {\r\n                System.out.println(\"Open the following URL and grant access to your account:\");\r\n                System.out.println(${requestToken}.getAuthorizationURL());\r\n                \r\n                System.out.print(\"Enter the PIN(if available) and hit enter after you granted access.[PIN]:\");\r\n                String ${pin:newName(java.lang.String)} \u003d ${br}.readLine();\r\n            \r\n                    if (${pin}.length() \u003e 0) {\r\n                        ${accessToken} \u003d ${twitter}.getOAuthAccessToken(${requestToken}, ${pin});\r\n                    } else {\r\n                        ${accessToken} \u003d ${twitter}.getOAuthAccessToken(${requestToken});\r\n                    }\r\n               \r\n            }\r\n            System.out.println(\"Got access token.\");\r\n            System.out.println(\"Access token: \" + ${accessToken}.getToken());\r\n            System.out.println(\"Access token secret: \" + ${accessToken}.getTokenSecret());\r\n            \r\n            \r\n            // Get Twitter Status\r\n         \r\n            Status ${status:newName(twitter4j.Status)} \u003d ${twitter}.showStatus(${accessToken}.getUserId());\r\n            System.out.println(\"@\" + ${status}.getUser().getScreenName() + \" - \" + ${status}.getText());\r\n            \r\n            System.exit(0);\r\n        } catch (Exception ${te:newName(java.lang.Exception)}) {\r\n            ${te}.printStackTrace();\r\n            System.out.println(\"Failed to get accessToken: \" + ${te}.getMessage());\r\n            System.exit(-1);\r\n        } \r\n    }\r\n\r\n${import:import(com.ibm.thirdparty.TwitterApi, java.io.BufferedReader, java.io.InputStreamReader, twitter4j.Status, twitter4j.Twitter, twitter4j.TwitterFactory, twitter4j.auth.AccessToken, twitter4j.auth.RequestToken)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "org.twitter4j",
+      "artifactId": "twitter4j-core",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    }
+  ]
+}
