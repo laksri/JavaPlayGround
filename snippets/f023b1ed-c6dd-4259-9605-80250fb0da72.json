@@ -1,0 +1,29 @@
+{
+  "uuid": "f023b1ed-c6dd-4259-9605-80250fb0da72",
+  "name": "Fitbit_API",
+  "description": "Call Fitbit",
+  "extraSearchTerms": [
+    "Fitbit",
+    "API"
+  ],
+  "tags": [],
+  "code": "private static final String ${apiBaseUrl:newName(java.lang.String)} \u003d \"api.fitbit.com\";\r\nprivate static final String ${fitbitSiteBaseUrl:newName(java.lang.String)} \u003d \"https://www.fitbit.com\";\r\n\r\n\r\npublic static void main(String[] ${args:newName(\u0027java.lang.String[]\u0027)}) throws FitbitAPIException, IOException {\r\n\r\n\tFitbitApiCredentialsCache ${credentialsCache:newName(com.fitbit.api.client.FitbitApiCredentialsCache)} \u003d new FitbitApiCredentialsCacheMapImpl();\r\n\tFitbitAPIEntityCache ${entityCache:newName(com.fitbit.api.client.FitbitAPIEntityCache)} \u003d new FitbitApiEntityCacheMapImpl();\r\n\tFitbitApiSubscriptionStorage ${subscriptionStore:newName(com.fitbit.api.client.FitbitApiSubscriptionStorage)} \u003d new FitbitApiSubscriptionStorageInMemoryImpl();\r\n\tFitbitAPIClientService\u003cFitbitApiClientAgent\u003e ${fitbit:newName(com.fitbit.api.client.service.FitbitAPIClientService)} \u003d new FitbitAPIClientService\u003cFitbitApiClientAgent\u003e(\r\n\t\t\tnew FitbitApiClientAgent(${apiBaseUrl}, ${fitbitSiteBaseUrl}, ${credentialsCache}), clientConsumerKey,\r\n\t\t\tclientSecret, ${credentialsCache}, ${entityCache}, ${subscriptionStore});\r\n\r\n\tfinal LocalUserDetail ${localUser:newName(com.fitbit.api.client.LocalUserDetail)} \u003d new LocalUserDetail(\"1\");\r\n\tString ${url:newName(java.lang.String)} \u003d ${fitbit}.getResourceOwnerAuthorizationURL(${localUser}, \"\");\r\n\tSystem.out.println(\"Open \" + ${url});\r\n\tSystem.out.print(\"Enter PIN:\");\r\n\tString ${pin:newName(java.lang.String)} \u003d readFromUser();\r\n\r\n\tAPIResourceCredentials ${creds:newName(com.fitbit.api.model.APIResourceCredentials)} \u003d ${fitbit}.getResourceCredentialsByUser(${localUser});\r\n\t${creds}.setTempTokenVerifier(${pin});\r\n\t${fitbit}.getTokenCredentials(${localUser});\r\n\r\n\t// you can save the access_token here to reuse later\r\n\t// System.out.println(\"Your access_token: \" + creds.getAccessToken());\r\n\t// System.out.println(\"Your access_token_secret: \" +\r\n\t// creds.getAccessTokenSecret());\r\n\r\n\tUserInfo ${profile:newName(com.fitbit.api.common.model.user.UserInfo)} \u003d ${fitbit}.getClient().getUserInfo(${localUser});\r\n\tSystem.out.println(${profile}.getDisplayName() + \", member since \" + ${profile}.getMemberSince());\r\n\r\n\tLocalDate ${date:newName(org.joda.time.LocalDate)} \u003d FitbitApiService.getValidLocalDateOrNull(\"2015-07-01\");\r\n\tSleep ${sleep:newName(com.fitbit.api.common.model.sleep.Sleep)} \u003d ${fitbit}.getClient().getSleep(${localUser}, FitbitUser.CURRENT_AUTHORIZED_USER, ${date});\r\n\tSystem.out.println(\"Your sleep on \" + ${date} + \": inBed\u003d\" + ${sleep}.getSummary().getTotalTimeInBed() + \" asleep\u003d\"\r\n\t\t\t+ ${sleep}.getSummary().getTotalMinutesAsleep());\r\n}\r\n\r\nprivate static String readFromUser() throws IOException {\r\n\tStringBuffer ${pin2:newName(java.lang.StringBuffer)} \u003d new StringBuffer();\r\n\tint ${in:newName(int)} \u003d -1;\r\n\twhile ((${in} \u003d System.in.read()) !\u003d \u0027\\n\u0027) {\r\n\t\t${pin2}.append((char) ${in});\r\n\t}\r\n\treturn ${pin2}.toString().trim();\r\n}\r\n${import:import(com.fitbit.api.FitbitAPIException, com.fitbit.api.client.FitbitAPIEntityCache, com.fitbit.api.client.FitbitApiClientAgent, com.fitbit.api.client.FitbitApiCredentialsCache, com.fitbit.api.client.FitbitApiCredentialsCacheMapImpl, com.fitbit.api.client.FitbitApiEntityCacheMapImpl, com.fitbit.api.client.FitbitApiSubscriptionStorage, com.fitbit.api.client.FitbitApiSubscriptionStorageInMemoryImpl, com.fitbit.api.client.LocalUserDetail, com.fitbit.api.client.service.FitbitAPIClientService, com.fitbit.api.common.model.sleep.Sleep, com.fitbit.api.common.model.user.UserInfo, com.fitbit.api.common.service.FitbitApiService, com.fitbit.api.model.APIResourceCredentials, com.fitbit.api.model.FitbitUser, java.io.IOException, org.joda.time.LocalDate)}${importStatic:importStatic(com.ibm.thirdparty.FitbitApi.clientConsumerKey, com.ibm.thirdparty.FitbitApi.clientSecret)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": [
+    {
+      "groupId": "joda-time",
+      "artifactId": "joda-time",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "jre",
+      "artifactId": "jre",
+      "version": "0.0.0"
+    },
+    {
+      "groupId": "com.fitbit",
+      "artifactId": "fitbit4j",
+      "version": "0.0.0"
+    }
+  ]
+}
