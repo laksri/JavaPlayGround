@@ -1,0 +1,13 @@
+{
+  "uuid": "7995733b-311c-4bc7-92ac-a6505b8282b4",
+  "name": "Mobile_AndroidLab_2a",
+  "description": "Cause a app crash",
+  "extraSearchTerms": [
+    "Android",
+    "Lab"
+  ],
+  "tags": [],
+  "code": "int ${i:newName(int)}\u003d0;\r\nint ${j:newName(int)}\u003d0;\r\nint ${k:newName(int)}\u003d${i}/${j};\r\n${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
