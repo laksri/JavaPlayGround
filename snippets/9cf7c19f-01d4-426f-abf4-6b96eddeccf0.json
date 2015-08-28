@@ -1,0 +1,13 @@
+{
+  "uuid": "9cf7c19f-01d4-426f-abf4-6b96eddeccf0",
+  "name": "Mobile_AndroidLab_4a",
+  "description": "Strict Policy",
+  "extraSearchTerms": [
+    "Android",
+    "Mobile"
+  ],
+  "tags": [],
+  "code": "StrictMode.ThreadPolicy ${policy:newName(android.os.StrictMode.ThreadPolicy)} \u003d new StrictMode.ThreadPolicy.Builder().permitAll().build();\r\nStrictMode.setThreadPolicy(${policy});\r\n${import:import(android.os.StrictMode)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
