@@ -1,0 +1,15 @@
+{
+  "uuid": "bc8dc06c-913f-436c-9c48-d4e0961f6bfc",
+  "name": "Mobile_AndroidLab_4b",
+  "description": "Add permission to Manifest xml",
+  "extraSearchTerms": [
+    "Mobile",
+    "Android",
+    "Internet",
+    "Permission"
+  ],
+  "tags": [],
+  "code": "\u003cuses-permission android:name\u003d\"android.permission.INTERNET\"\u003e\u003c/uses-permission\u003e \r\n${cursor}\r\n",
+  "location": "FILE",
+  "dependencies": []
+}
