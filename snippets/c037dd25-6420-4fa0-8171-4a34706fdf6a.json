@@ -1,0 +1,13 @@
+{
+  "uuid": "c037dd25-6420-4fa0-8171-4a34706fdf6a",
+  "name": "Mobile_AndroidLab_3b",
+  "description": "On click Listener",
+  "extraSearchTerms": [
+    "Android",
+    "Mobile"
+  ],
+  "tags": [],
+  "code": "package com.example.helloandroid;\r\n\r\nimport android.view.View;\r\nimport android.view.View.OnClickListener;\r\n\r\npublic class OurOnClickListener implements OnClickListener {\r\n\r\n\tMainActivity ${caller:newName(com.example.helloandroid.MainActivity)};\r\n\t\r\n\tpublic OurOnClickListener(MainActivity ${activity:newName(com.example.helloandroid.MainActivity)}) {\r\n\t\tthis.${caller} \u003d ${activity};\r\n\t}\r\n\r\n\t@Override\r\n\tpublic void onClick(View ${v:newName(android.view.View)}) {\r\n\t\t${caller}.textView.setText(\"The button was clicked\");\r\n\t}\r\n\r\n}\r\n\r\n${import:import(android.view.View, android.view.View.OnClickListener, com.example.helloandroid.MainActivity)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
