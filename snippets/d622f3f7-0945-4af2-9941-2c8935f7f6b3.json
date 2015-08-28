@@ -1,0 +1,13 @@
+{
+  "uuid": "d622f3f7-0945-4af2-9941-2c8935f7f6b3",
+  "name": "Mobile_AndroidLab_3a",
+  "description": "Button Click Event Handler",
+  "extraSearchTerms": [
+    "Android",
+    "Lab"
+  ],
+  "tags": [],
+  "code": "TextView ${textView:newName(android.widget.TextView)};\r\nButton ${ourButton:newName(android.widget.Button)};\r\n\r\n@Override\r\nprotected void onCreate(Bundle ${bundle:newName(android.os.Bundle)}) {\r\n\tsuper.onCreate(${bundle});\r\n\tsetContentView(R.layout.activity_main);\r\n\r\n\t${textView} \u003d (TextView)findViewById(R.id.textView1);\r\n\t\r\n\t${ourButton} \u003d (Button) findViewById(R.id.button1);\r\n\t${ourButton}.setOnClickListener(new OurOnClickListener(this));\r\n\t\r\n}\r\n${import:import(android.os.Bundle, android.widget.Button, android.widget.TextView, com.example.helloandroid.OurOnClickListener, com.example.helloandroid.R)}${cursor}\r\n",
+  "location": "JAVA",
+  "dependencies": []
+}
